@@ -1,0 +1,48 @@
+---
+import { nav } from '../nav.ts';
+
+interface Props {
+  activeTab: string;
+  activeSlug: string;
+}
+
+const { activeTab, activeSlug } = Astro.props;
+
+function itemHref(item: { slug?: string; href?: string; label: string }, tabId: string): string {
+  if (item.slug) return `/docs/${item.slug}`;
+  if (item.href && item.href !== '#') return item.href;
+  return `/docs/stub?t=${encodeURIComponent(item.label)}&tab=${tabId}`;
+}
+---
+
+<aside class="sidebar" id="sidebar">
+  {nav.map((tab) => (
+    <div
+      class={`sidebar-section${activeTab === tab.id ? ' active' : ''}`}
+      id={`nav-${tab.id}`}
+    >
+      {tab.items?.map((item) => (
+        <a
+          href={itemHref(item, tab.id)}
+          class={`nav-item${item.slug === activeSlug ? ' active' : ''}`}
+        >
+          {item.label}
+        </a>
+      ))}
+
+      {tab.groups?.map((group) => (
+        <>
+          <div class="nav-group-label">{group.label}</div>
+          {group.items.map((item) => (
+            <a
+              href={itemHref(item, tab.id)}
+              class={`nav-item sub${item.slug === activeSlug ? ' active' : ''}`}
+            >
+              {item.label}
+            </a>
+          ))}
+        </>
+      ))}
+    </div>
+  ))}
+</aside>

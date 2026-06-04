@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  align?: string;
+  title?: string;
+  alt?: string;
+  border?: boolean;
+}
+
+const { src, title, alt } = Astro.props;
+---
+<figure class="doc-image">
+  <img src={src} alt={alt ?? title ?? ''} loading="lazy" />
+</figure>
+
+<style>
+.doc-image {
+  margin: 16px 0;
+}
+.doc-image img {
+  max-width: 100%;
+  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+}
+</style>

@@ -1,0 +1,52 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: Heading[];
+}
+
+const { headings } = Astro.props;
+const filtered = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+<aside class="otp" id="otp">
+  {filtered.length > 0 && (
+    <>
+      <div class="otp-label">On this page</div>
+      <ul class="otp-list">
+        {filtered.map((h) => (
+          <li class={h.depth === 3 ? 'depth-3' : ''}>
+            <a href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+</aside>
+
+<script>
+  // Highlight the active heading as user scrolls
+  const links = document.querySelectorAll('.otp-list a');
+  const headings = Array.from(links).map((a) => {
+    const href = (a as HTMLAnchorElement).getAttribute('href')!;
+    return document.querySelector(href) as HTMLElement | null;
+  });
+
+  function updateActive() {
+    const top = window.scrollY + 120;
+    let current = 0;
+    headings.forEach((h, i) => {
+      if (h && h.offsetTop <= top) current = i;
+    });
+    links.forEach((a, i) => {
+      a.classList.toggle('active', i === current);
+    });
+  }
+
+  window.addEventListener('scroll', updateActive, { passive: true });
+  updateActive();
+</script>

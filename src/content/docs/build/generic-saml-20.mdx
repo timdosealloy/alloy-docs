@@ -1,0 +1,130 @@
+---
+title: Generic SAML 2.0
+section: build
+navGroup: Account setup & admin
+description: Configure SAML SSO with any SAML 2.0-compliant identity provider
+---
+
+Alloy supports SAML SSO with Okta and Azure Entra ID. It's SAML 2.0, so with any other identity provider, you can try to integrate using the steps below.
+
+## Prerequisites
+
+Minimum requirements for identity providers:
+
+- The IdP must conform to SAML 2.0.
+- The IdP must provide a **Single sign-on URL**, an **Entity ID**, a **Signing certificate**, and a **Metadata.xml**.
+- The IdP must be able to configure the attribute mapping between the IdP and SP.
+- The IdP must include the signing public key in the SAML response.
+
+## 1. Access to Authentication Settings at Alloy
+
+### 1.1 Granting Access to the SAML Self-Serve Setup
+
+The agent must either have `Admin` access or be granted access to a role with the following permissions below via "Roles" to "Authentication Settings".
+
+<Image src="https://files.readme.io/788bccaf84b32b55e278630e1169d18ac4752d40dde871df63d37f4e1100d87f-Screenshot_2025-01-03_at_10.21.12_AM.png" alt="Authentication settings permissions" />
+
+### 1.2 Configuring a Default Role
+
+Before you can use SAML, you **MUST** configure a default role for your users in the Alloy settings. This role will determine the permissions that your user has when they first log in.
+
+The first time a user logs in using SAML SSO, they will be added to the Alloy system as an "Agent", and will be given this default role. Agents with Admin permission can then go in and assign them a different role, if they need additional privileges.
+
+1. Be sure that you have Admin permission in Alloy, and log in to your dashboard.
+2. Navigate to **Settings** in the sidebar, and then select **Roles** from the list.
+
+   <Image title="Roles page" src="https://files.readme.io/2cae067-a1.png" />
+
+3. On the Roles page, you should see a list of roles. By default these include "Admin" and "User," but your organization may have configured different ones.
+
+   <Image src="https://files.readme.io/061969baafae40d41b7f5243ed89ae28cc63f907875dfc3401ff36277421b41e-Screenshot_2024-12-27_at_3.14.26_PM.png" alt="Roles list" />
+
+4. Select the role that you want to designate as the default for new SAML users. Click the pencil icon to edit the role.
+
+   <Image src="https://files.readme.io/0071a621e1f30b6fe188e2044b63845091c38d719b713e2d67d2040620e0241e-Screenshot_2024-12-27_at_3.15.43_PM.png" alt="Edit role" />
+
+5. Check the box labeled "Designate this role as the organizational default for new users," and apply your changes by clicking "Save."
+
+   <Image src="https://files.readme.io/900386c8abb0d7cece4de4bedf042aec394ea222988cb84a886917e4463fd9de-Screenshot_2024-12-27_at_3.16.50_PM.png" alt="Set default role checkbox" />
+
+6. You have now set a default user role for your org, and are ready to use SAML!
+
+   <Image src="https://files.readme.io/1bbf85bc98ca67d804ab36fa4a915dee0b6c5d5b61da541838af61ab87969d59-Screenshot_2024-12-27_at_3.22.28_PM.png" alt="Default Role label" />
+
+### 1.3 Setting up SAML
+
+Once your access has been configured, go to "Authentication".
+
+<Image src="https://files.readme.io/8dd967df3ad578ca9486bea9d1edbaefd52161178c51528c3522ae2366c22019-Screenshot_2024-12-27_at_3.25.44_PM.png" alt="Authentication settings page" />
+
+Then, select "Enable SAML Authentication".
+
+<Image src="https://files.readme.io/9c2c79ebd5b8aac78b0e56e98b7ac77e1af05331dbe2faf6cac8860151f3d4ff-Screenshot_2024-12-27_at_3.27.04_PM.png" alt="Enable SAML Authentication" />
+
+Select `My IdP is not listed here` and click Continue.
+
+<Image src="https://files.readme.io/a31597ff1074682b8bb097ab8dce165a148627b87eaae94258a92e5deed5d742-Screenshot_2024-12-27_at_3.34.16_PM.png" alt="Select IdP type" />
+
+Take note of the `SSO URL` and `Audience URI`.
+
+## 2. Add Alloy to your identity provider
+
+### 2.1 Create an application in your identity provider
+
+Most identity providers allow users to create an **Application**. The typical setup requirements are:
+
+1. Create a new integration in the identity provider with the type set as **SAML 2.0**.
+2. Configure the `SSO URL` and `Audience URI` from step 1.3.
+
+### 2.2 Update the attribute mapping
+
+It is critical to configure the Identity Provider to map the user's **email address, first name, last name, and phone number** to attributes with ***these exact names (case sensitive):***
+
+*(Please note: the `Value` field may vary depending on the Identity Provider. Those shown below are sample values using Okta as a reference.)*
+
+- `Email`: User's email address — in Okta: `user.email`
+- `firstName`: User's first name — in Okta: `user.firstName`
+- `lastName`: User's last name — in Okta: `user.lastName`
+- `phone`: User's phone number — in Okta: `user.mobilePhone` (optional)
+
+### 2.3 Download the IdP metadata
+
+Once you have completed all the SAML fields and created an integration for Alloy, you will need to extract the **Identity Provider Metadata XML** document which has the configured SAML fields so that we can securely verify login requests coming from your identity provider.
+
+## 3. Upload the IdP metadata to Alloy
+
+Upload it on step 3 of Set up SAML.
+
+<Image src="https://files.readme.io/dac392a23a03bdc330d7c33c8002a185fe4323df89468232c5de1e2e7bf787f0-Screenshot_2024-12-27_at_3.31.45_PM.png" alt="Upload IdP metadata" />
+
+## 4. Test the Single sign-on
+
+### 4.1 Assign the user to the app
+
+### 4.2 Test SSO with the user that is assigned to the App
+
+Log the test user in to the IdP application dashboard. They should be able to see the Alloy app — click it to sign in.
+
+## 5. Other Authentication Settings
+
+<Image src="https://files.readme.io/cb7bdb2-5.png" alt="Other authentication settings" />
+
+- **G Suite Domain** — If you'd like to give your users the ability to login via Google SSO, you can enter the G Suite Domain they should be using.
+- **Google Signin Required** — This will force users to log in via Google SSO.
+- **Multi-Factor Authentication Required** — If your organization does not have SAML enabled, you can require that each user log in using MFA.
+- **Enforce Single Sign-On** — If SAML is enabled, all users will be forced to log in with SSO. If disabled, users will be able to log in via SSO or credentials.
+
+### 5.1. SAML Exceptions
+
+<Image src="https://files.readme.io/6864d39-6.png" alt="SAML exceptions settings" />
+
+If you'd like to grant users the ability to log in via credentials when **Enforce Single Sign-On** is on, you can configure this via the "SAML Exceptions" section.
+
+## 6. How to Configure SCIM
+
+*Note: SCIM is only supported for clients who currently use Okta and Microsoft Entra.*
+
+Once you've successfully set up SAML, you can configure SCIM.
+
+- [Setting up SCIM in Okta](https://developer.alloy.com/public/docs/scim-with-okta)
+- [Setting up SCIM in Microsoft Entra](https://developer.alloy.com/public/docs/scim-with-azure)

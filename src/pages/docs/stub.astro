@@ -1,0 +1,19 @@
+---
+import DocLayout from '../../layouts/DocLayout.astro';
+---
+
+<DocLayout title="..." headings={[]} activeTab="" activeSlug="">
+  <h1 id="stub-title" style="visibility:hidden">...</h1>
+</DocLayout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const title = new URLSearchParams(window.location.search).get('t') ?? '';
+    const h1 = document.getElementById('stub-title');
+    if (h1) {
+      h1.textContent = title;
+      h1.style.visibility = 'visible';
+    }
+    if (title) document.title = `${title} — Alloy Developer Docs`;
+  });
+</script>

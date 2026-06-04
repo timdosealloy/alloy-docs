@@ -1,0 +1,64 @@
+---
+title: Authentication Guide
+section: get-started
+description: How to authenticate with the Alloy API using Basic Auth or OAuth 2.0
+---
+
+Alloy supports both basic HTTP authentication and OAuth 2.0, depending on the security requirements and technical limitations of your organization. Both methods use a `token` and `secret` (viewable in your dashboard) issued to each of your applications.
+
+> **Transitioning to Account-Level API Keys**
+>
+> Historically, API tokens and secrets referred to `workflow_token` and `workflow_secret`. As part of Alloy's initiative to introduce account-level API keys, this is changing.
+>
+> If you have migrated to the new API Key Settings page, `token` and `secret` will now refer to the new API token and secret.
+> If you have not migrated yet, continue using `workflow_token` and `workflow_secret`.
+
+Make sure to not share your `secret` (never put it in repositories or leave human-readable in code) and always use HTTPS. Whether you use OAuth 2 or basic auth for server-to-server communication, they are only as good as the security of the clients using our APIs.
+
+## Basic HTTP Authentication
+
+To authorize per-request with HTTP basic auth, use this code:
+
+```bash
+curl -X POST https://sandbox.alloy.co/v1/evaluations \
+     -H "Content-Type: application/json" \
+     -u token:secret \
+     -d $'{
+       "name_first": "John",
+       ...
+     }'
+```
+
+Credentials must be passed for each request. The username is the `token` and the password is the `secret`. To implement HTTP basic auth yourself:
+
+1. Concatenate the token and secret together, separated by a colon
+2. Base64 encode the resulting string
+3. Pass the result in the authorization header, prefixed with the word "Basic" like `Basic base64_encode(token:secret)`
+
+## OAuth 2.0
+
+To authorize once with OAuth 2.0, use this code:
+
+```bash
+curl -X POST https://sandbox.alloy.co/v1/oauth/bearer \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Basic <basic_token>" \
+  -d '{
+    "grant_type": "client_credentials"
+  }'
+```
+
+The application credentials must first be passed to a route in order to receive a bearer token. Each bearer token is valid for one hour. Alloy uses standard [OAuth 2.0](https://tools.ietf.org/html/rfc6749), so it is plug-and-play with most auth plugins or API clients. All you need to know is:
+
+- **Grant Type:** `client_credentials`
+- **Client ID:** (token)
+- **Client Secret:** (secret)
+- **Access Token URL:** `https://sandbox.alloy.co/v1/oauth/bearer`
+
+If you want to roll your own, pass the token and secret via basic auth (as explained above) to `POST /oauth/bearer` with a grant type of `client_credentials`.
+
+Alloy expects the bearer token to be included in all API requests to the server in a header that looks like the following:
+
+```
+Authorization: Bearer <bearer_token>
+```
