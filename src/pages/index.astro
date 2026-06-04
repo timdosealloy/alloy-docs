@@ -6,11 +6,13 @@ const products = [
     title: 'Onboarding',
     desc: 'Learn about how to implement onboarding with Alloy.',
     href: '/docs/guides/onboarding-with-entity-groups',
+    icon: 'fa-user-check',
   },
   {
     title: 'Ongoing Monitoring',
     desc: 'Explore the ways Alloy solves the different types of ongoing monitoring.',
     href: '/docs/concepts/what-is-ongoing-monitoring',
+    icon: 'fa-chart-line',
   },
 ];
 
@@ -19,26 +21,31 @@ const features = [
     title: 'Events API',
     desc: 'Learn about the capabilities of our Events API.',
     href: '/docs/stub?t=Events+API&tab=build',
+    icon: 'fa-bolt',
   },
   {
     title: 'SDK',
     desc: 'Explore the different features of our SDK.',
     href: '/docs/stub?t=SDK&tab=build',
+    icon: 'fa-code',
   },
   {
     title: 'Entities',
     desc: 'Read about Entities, a fundamental piece of Alloy\'s system.',
     href: '/docs/stub?t=Entities&tab=concepts',
+    icon: 'fa-fingerprint',
   },
   {
     title: 'Journeys',
     desc: 'Learn the ins and outs of Journeys — the primary method of decisioning within Alloy.',
     href: '/docs/stub?t=Journeys&tab=concepts',
+    icon: 'fa-map',
   },
   {
     title: 'Webhooks',
     desc: 'View information on Alloy\'s webhooks and when we send them.',
     href: '/docs/stub?t=Webhooks&tab=concepts',
+    icon: 'fa-arrow-right-arrow-left',
   },
 ];
 ---
@@ -63,6 +70,7 @@ const features = [
       <div class="home-cards home-cards-2">
         {products.map((p) => (
           <a href={p.href} class="home-card">
+            {p.icon && <i class={`fa-light ${p.icon} home-card-icon`} aria-hidden="true"></i>}
             <div class="home-card-body">
               <div class="home-card-title">{p.title}</div>
               <div class="home-card-desc">{p.desc}</div>
@@ -79,6 +87,7 @@ const features = [
       <div class="home-cards home-cards-3">
         {features.map((f) => (
           <a href={f.href} class="home-card">
+            {f.icon && <i class={`fa-light ${f.icon} home-card-icon`} aria-hidden="true"></i>}
             <div class="home-card-body">
               <div class="home-card-title">{f.title}</div>
               <div class="home-card-desc">{f.desc}</div>

@@ -46,13 +46,11 @@ img { max-width: 100%; height: auto; display: block; }
   background: var(--color-bg);
   display: flex;
   align-items: center;
-  padding: 12px var(--page-padding-inline) 0;
+  padding: 12px var(--content-padding) 0;
   gap: 16px;
   position: sticky;
   top: 0;
   z-index: 30;
-  max-width: var(--content-width);
-  margin-inline: auto;
 }
 
 .topbar-logo {
@@ -152,6 +150,7 @@ img { max-width: 100%; height: auto; display: block; }
   text-decoration: none;
   outline: none;
 }
+.tab svg { height: 16px; width: auto; margin-right: 6px; }
 .tab:hover { color: var(--color-accent); text-decoration: none; }
 .tab.active {
   color: var(--color-accent);
@@ -514,6 +513,13 @@ img { max-width: 100%; height: auto; display: block; }
   border-color: var(--color-accent);
   box-shadow: 0 2px 8px rgba(51,116,214,0.08);
   text-decoration: none;
+}
+
+.home-card-icon {
+  height: 20px;
+  width: auto;
+  color: var(--color-accent);
+  flex-shrink: 0;
 }
 
 .home-card-body { flex: 1; min-width: 0; }

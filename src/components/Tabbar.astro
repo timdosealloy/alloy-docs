@@ -16,6 +16,7 @@ const { activeTab = '' } = Astro.props;
       data-href={getFirstHref(tab.id)}
       type="button"
     >
+      {tab.icon && <i class={`fa-light ${tab.icon}`} aria-hidden="true"></i>}
       {tab.label}
     </button>
   ))}

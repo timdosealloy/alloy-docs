@@ -12,6 +12,7 @@ export interface NavGroup {
 export interface NavTab {
   id: string;
   label: string;
+  icon?: string;
   items?: NavItem[];
   groups?: NavGroup[];
 }
@@ -20,6 +21,7 @@ export const nav: NavTab[] = [
   {
     id: 'get-started',
     label: 'Get Started',
+    icon: 'fa-rocket',
     items: [
       { label: 'What is Alloy', href: '#' },
       { label: 'Sandbox vs. Production', slug: 'get-started/sandbox-vs-production' },
@@ -30,6 +32,7 @@ export const nav: NavTab[] = [
   {
     id: 'concepts',
     label: 'Concepts',
+    icon: 'fa-lightbulb',
     groups: [
       {
         label: 'Data model',
@@ -78,6 +81,7 @@ export const nav: NavTab[] = [
   {
     id: 'build',
     label: 'Build',
+    icon: 'fa-hammer',
     groups: [
       {
         label: 'Account setup & admin',
@@ -130,6 +134,7 @@ export const nav: NavTab[] = [
   {
     id: 'guides',
     label: 'End-to-End Guides',
+    icon: 'fa-compass',
     items: [
       { label: 'Onboarding a new customer with Journeys', href: '#' },
       { label: 'Onboarding with Step-Up Journey', href: '#' },
@@ -151,6 +156,7 @@ export const nav: NavTab[] = [
   {
     id: 'api-reference',
     label: 'API Reference',
+    icon: 'fa-book',
     groups: [
       {
         label: 'Journey API',
@@ -184,6 +190,7 @@ export const nav: NavTab[] = [
   {
     id: 'troubleshoot',
     label: 'Troubleshoot',
+    icon: 'fa-bug',
     items: [
       { label: 'Common errors: Journey Applications', href: '#' },
       { label: 'Error codes', href: '#' },
