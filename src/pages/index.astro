@@ -48,50 +48,44 @@ const features = [
 
     <!-- Hero -->
     <section class="home-hero">
-      <div class="home-hero-inner">
-        <h1 class="home-hero-title">Welcome to Alloy Docs</h1>
-        <p class="home-hero-sub">Explore our product guides and API reference to help with your integration process.</p>
-        <div class="home-search-wrap">
-          <span class="home-search-icon">⌕</span>
-          <input class="home-search-input" placeholder="Search docs…" type="search" />
-          <kbd class="home-search-kbd">⌘K</kbd>
-        </div>
+      <h1 class="home-hero-title">Welcome to Alloy Docs</h1>
+      <p class="home-hero-sub">Explore our product guides and API reference to help with your integration process.</p>
+      <div class="home-search-wrap">
+        <span class="home-search-icon">⌕</span>
+        <input class="home-search-input" placeholder="Search docs…" type="search" />
+        <kbd class="home-search-kbd">⌘K</kbd>
       </div>
     </section>
 
     <!-- Products -->
     <section class="home-section">
-      <div class="home-section-inner">
-        <h2 class="home-section-label">Products</h2>
-        <div class="home-cards home-cards-2">
-          {products.map((p) => (
-            <a href={p.href} class="home-card">
-              <div class="home-card-body">
-                <div class="home-card-title">{p.title}</div>
-                <div class="home-card-desc">{p.desc}</div>
-              </div>
-              <span class="home-card-arrow">→</span>
-            </a>
-          ))}
-        </div>
+      <h2 class="home-section-label">Products</h2>
+      <div class="home-cards home-cards-2">
+        {products.map((p) => (
+          <a href={p.href} class="home-card">
+            <div class="home-card-body">
+              <div class="home-card-title">{p.title}</div>
+              <div class="home-card-desc">{p.desc}</div>
+            </div>
+            <span class="home-card-arrow">→</span>
+          </a>
+        ))}
       </div>
     </section>
 
     <!-- Features -->
     <section class="home-section home-section-alt">
-      <div class="home-section-inner">
-        <h2 class="home-section-label">Features</h2>
-        <div class="home-cards home-cards-3">
-          {features.map((f) => (
-            <a href={f.href} class="home-card">
-              <div class="home-card-body">
-                <div class="home-card-title">{f.title}</div>
-                <div class="home-card-desc">{f.desc}</div>
-              </div>
-              <span class="home-card-arrow">→</span>
-            </a>
-          ))}
-        </div>
+      <h2 class="home-section-label">Features</h2>
+      <div class="home-cards home-cards-3">
+        {features.map((f) => (
+          <a href={f.href} class="home-card">
+            <div class="home-card-body">
+              <div class="home-card-title">{f.title}</div>
+              <div class="home-card-desc">{f.desc}</div>
+            </div>
+            <span class="home-card-arrow">→</span>
+          </a>
+        ))}
       </div>
     </section>
 
