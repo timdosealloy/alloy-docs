@@ -22,7 +22,7 @@ export const nav: NavTab[] = [
     label: 'Get Started',
     items: [
       { label: 'What is Alloy', href: '#' },
-      { label: 'Sandbox vs. Production', href: '#' },
+      { label: 'Sandbox vs. Production', slug: 'get-started/sandbox-vs-production' },
       { label: 'Authentication', slug: 'get-started/authentication-guide' },
       { label: 'Quickstart: Your first Journey Application', href: '#' },
     ],
@@ -52,7 +52,7 @@ export const nav: NavTab[] = [
       {
         label: 'Ongoing Monitoring',
         items: [
-          { label: 'What is Ongoing Monitoring', href: '#' },
+          { label: 'What is Ongoing Monitoring?', slug: 'concepts/what-is-ongoing-monitoring' },
           { label: 'Terminology', href: '#' },
           { label: 'Alloy Internal Services', href: '#' },
           { label: 'Decisioning with Events', href: '#' },
@@ -133,7 +133,7 @@ export const nav: NavTab[] = [
     items: [
       { label: 'Onboarding a new customer with Journeys', href: '#' },
       { label: 'Onboarding with Step-Up Journey', href: '#' },
-      { label: 'Onboarding with Entity Groups (KYB)', href: '#' },
+      { label: 'Onboarding with Entity Groups (KYB)', slug: 'guides/onboarding-with-entity-groups' },
       { label: 'Ongoing Monitoring with Entity Groups', href: '#' },
     ],
     groups: [

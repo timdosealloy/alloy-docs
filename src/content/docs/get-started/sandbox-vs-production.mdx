@@ -1,0 +1,21 @@
+---
+title: Sandbox vs. Production
+section: get-started
+description: How to authenticate with the Alloy API using Basic Auth or OAuth 2.0
+---
+
+Alloy's APIs operate in two distinct modes: Production and Sandbox. The production environment runs real production data, and calls are made to 3rd-party data services. Sandbox mode is designed for testing and experimentation, allowing users to explore without affecting live data.
+
+The Sandbox URL: `https://sandbox.alloy.co`
+
+The Production URL: `https://api.alloy.co`
+
+> ℹ️ In some scenarios, clients will have custom URLs, which are specific to your account, including those based outside of the United States. Your implementation team will let you know if this case applies to you and provide you with the appropriate base URLs to use in your integration.
+
+The Sandbox environment is a playground used for testing, and calls do not hit the data service vendors. Dummy data can be used in the Sandbox environment, and the environment can be used for training or testing purposes. If you want to call the Sandbox environment, use the Sandbox API.
+
+The Production environment is used to run real production data, and calls are made to the actual data services (meaning charges are incurred). Dummy data cannot be used in the Production environment. If you want to call the Production environment, use the Production API.
+
+You control Sandbox vs. Production on your side through the API endpoint URL for those evaluations.
+
+Any evaluation tokens with the prefix of S- were created in the Sandbox environment. Any evaluation tokens with the prefix of L- were created in the Production environment. Regardless of environment, all individual entity-types will have entity tokens with the prefix of P-, while all business entity-types will have entity tokens with the prefix of B-.
