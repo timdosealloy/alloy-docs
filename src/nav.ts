@@ -149,8 +149,8 @@ export const nav: NavTab[] = [
     ],
   },
   {
-    id: 'reference',
-    label: 'Reference',
+    id: 'api-reference',
+    label: 'API Reference',
     groups: [
       {
         label: 'Journey API',
@@ -194,6 +194,16 @@ export const nav: NavTab[] = [
     ],
   },
 ];
+
+export function getFirstHref(tabId: string): string {
+  const tab = nav.find((t) => t.id === tabId);
+  if (!tab) return '#';
+  const items = tab.items ?? tab.groups?.[0]?.items ?? [];
+  const first = items[0];
+  if (!first) return '#';
+  if (first.slug) return `/docs/${first.slug}`;
+  return `/docs/stub?t=${encodeURIComponent(first.label)}&tab=${tabId}`;
+}
 
 export function getTabForSlug(slug: string): string {
   for (const tab of nav) {

@@ -1,0 +1,23 @@
+---
+import { nav, getFirstHref } from '../nav.ts';
+
+interface Props {
+  activeTab?: string;
+}
+
+const { activeTab = '' } = Astro.props;
+---
+<nav class="tabbar" id="tabbar" aria-label="Documentation sections" transition:persist="tabbar">
+  <span class="version-number">v1.0</span>
+  {nav.map((tab) => (
+    <button
+      class={`tab${activeTab === tab.id ? ' active' : ''}`}
+      data-tab={tab.id}
+      data-href={getFirstHref(tab.id)}
+      type="button"
+    >
+      {tab.label}
+    </button>
+  ))}
+  <!-- <a href="#" class="tab-api-link">API Reference ↗</a> -->
+</nav>

@@ -1,3 +1,97 @@
 ---
-return Astro.redirect('/docs/get-started/authentication-guide');
+import HomeLayout from '../layouts/HomeLayout.astro';
+
+const products = [
+  {
+    title: 'Onboarding',
+    desc: 'Learn about how to implement onboarding with Alloy.',
+    href: '/docs/stub?t=Onboarding&tab=build',
+  },
+  {
+    title: 'Ongoing Monitoring',
+    desc: 'Explore the ways Alloy solves the different types of ongoing monitoring.',
+    href: '/docs/stub?t=Ongoing+Monitoring&tab=concepts',
+  },
+];
+
+const features = [
+  {
+    title: 'Events API',
+    desc: 'Learn about the capabilities of our Events API.',
+    href: '/docs/stub?t=Events+API&tab=build',
+  },
+  {
+    title: 'SDK',
+    desc: 'Explore the different features of our SDK.',
+    href: '/docs/stub?t=SDK&tab=build',
+  },
+  {
+    title: 'Entities',
+    desc: 'Read about Entities, a fundamental piece of Alloy\'s system.',
+    href: '/docs/stub?t=Entities&tab=concepts',
+  },
+  {
+    title: 'Journeys',
+    desc: 'Learn the ins and outs of Journeys — the primary method of decisioning within Alloy.',
+    href: '/docs/stub?t=Journeys&tab=concepts',
+  },
+  {
+    title: 'Webhooks',
+    desc: 'View information on Alloy\'s webhooks and when we send them.',
+    href: '/docs/stub?t=Webhooks&tab=concepts',
+  },
+];
 ---
+
+<HomeLayout>
+  <div class="home">
+
+    <!-- Hero -->
+    <section class="home-hero">
+      <h1 class="home-hero-title">Welcome to Alloy</h1>
+      <p class="home-hero-sub">Explore our product guides and API reference to help with your integration process.</p>
+      <div class="home-search-wrap">
+        <span class="home-search-icon">⌕</span>
+        <input class="home-search-input" placeholder="Search docs…" type="search" />
+        <kbd class="home-search-kbd">⌘K</kbd>
+      </div>
+    </section>
+
+    <!-- Products -->
+    <section class="home-section">
+      <div class="home-section-inner">
+        <h2 class="home-section-label">Products</h2>
+        <div class="home-cards home-cards-2">
+          {products.map((p) => (
+            <a href={p.href} class="home-card">
+              <div class="home-card-body">
+                <div class="home-card-title">{p.title}</div>
+                <div class="home-card-desc">{p.desc}</div>
+              </div>
+              <span class="home-card-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section class="home-section home-section-alt">
+      <div class="home-section-inner">
+        <h2 class="home-section-label">Features</h2>
+        <div class="home-cards home-cards-3">
+          {features.map((f) => (
+            <a href={f.href} class="home-card">
+              <div class="home-card-body">
+                <div class="home-card-title">{f.title}</div>
+                <div class="home-card-desc">{f.desc}</div>
+              </div>
+              <span class="home-card-arrow">→</span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+  </div>
+</HomeLayout>

@@ -1,0 +1,37 @@
+---
+import '../styles/global.css';
+import { ViewTransitions } from 'astro:transitions';
+import Topbar from '../components/Topbar.astro';
+import Tabbar from '../components/Tabbar.astro';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alloy Developer Docs</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
+    <ViewTransitions />
+  </head>
+  <body>
+
+    <Topbar />
+    <Tabbar />
+
+    <slot />
+
+  </body>
+</html>
+
+<script>
+  document.addEventListener('click', (e) => {
+    const tab = (e.target as Element).closest<HTMLElement>('.tab[data-tab]');
+    if (!tab) return;
+    const href = tab.dataset.href;
+    if (href) window.location.href = href;
+  });
+</script>

@@ -1,9 +1,10 @@
 ---
 import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
+import Topbar from '../components/Topbar.astro';
+import Tabbar from '../components/Tabbar.astro';
 import LeftSidebar from '../components/LeftSidebar.astro';
 import RightSidebar from '../components/RightSidebar.astro';
-import { nav } from '../nav.ts';
 
 interface Heading {
   depth: number;
@@ -28,7 +29,7 @@ const { title, headings, activeTab, activeSlug, breadcrumb = [] } = Astro.props;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title} — Alloy Developer Docs</title>
-    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" />
@@ -37,41 +38,8 @@ const { title, headings, activeTab, activeSlug, breadcrumb = [] } = Astro.props;
   </head>
   <body data-active-tab={activeTab} data-active-slug={activeSlug}>
 
-    <!-- Top bar -->
-    <header class="topbar" transition:persist="topbar">
-      <a href="/" class="topbar-logo">
-        <img src="/logo.svg" alt="Alloy" style="height:28px;width:auto;display:block;filter:brightness(0) invert(1)" />
-      </a>
-      <nav class="topbar-nav" aria-label="Site sections">
-        <a href="/docs/get-started/authentication-guide" class={`topbar-nav-link${activeTab === 'get-started' || activeTab === 'concepts' || activeTab === 'build' || activeTab === 'guides' || activeTab === 'reference' || activeTab === 'troubleshoot' ? ' active' : ''}`}>Guides</a>
-        <a href="#" class="topbar-nav-link">Recipes</a>
-        <a href="#" class="topbar-nav-link">API Reference</a>
-        <a href="#" class="topbar-nav-link">Help/Support</a>
-      </nav>
-      <div class="topbar-right">
-        <button class="topbar-search" aria-label="Search">
-          <span class="topbar-search-icon">⌕</span>
-          <span>Search</span>
-          <span style="opacity:0.5;font-size:11px;margin-left:8px">⌘K</span>
-        </button>
-        <span class="version-badge">v1.0</span>
-        <a href="#" class="login-btn">Log In</a>
-      </div>
-    </header>
-
-    <!-- Section tab bar -->
-    <nav class="tabbar" id="tabbar" aria-label="Documentation sections" transition:persist="tabbar">
-      {nav.map((tab) => (
-        <button
-          class={`tab${activeTab === tab.id ? ' active' : ''}`}
-          data-tab={tab.id}
-          type="button"
-        >
-          {tab.label}
-        </button>
-      ))}
-      <a href="#" class="tab-api-link">API Reference ↗</a>
-    </nav>
+    <Topbar />
+    <Tabbar activeTab={activeTab} />
 
     <!-- Three-column layout -->
     <div class="doc-layout">
@@ -118,10 +86,7 @@ const { title, headings, activeTab, activeSlug, breadcrumb = [] } = Astro.props;
   document.addEventListener('click', (e) => {
     const tab = (e.target as Element).closest<HTMLElement>('.tab[data-tab]');
     if (!tab) return;
-    const key = tab.dataset.tab!;
-    document.querySelectorAll('.tab').forEach((t) => t.classList.remove('active'));
-    tab.classList.add('active');
-    document.querySelectorAll('.sidebar-section').forEach((s) => s.classList.remove('active'));
-    document.getElementById(`nav-${key}`)?.classList.add('active');
+    const href = tab.dataset.href;
+    if (href) window.location.href = href;
   });
 </script>
