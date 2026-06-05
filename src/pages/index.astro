@@ -100,3 +100,19 @@ const features = [
 
   </div>
 </HomeLayout>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    const input = document.querySelector<HTMLElement>('.home-search-input');
+    if (!input) return;
+    input.addEventListener('focus', () => {
+      (window as any).__openSearch?.();
+      input.blur();
+    });
+    input.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key.length === 1 || (e as KeyboardEvent).key === 'Enter') {
+        (window as any).__openSearch?.();
+      }
+    });
+  });
+</script>

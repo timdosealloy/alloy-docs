@@ -5,6 +5,7 @@ import Topbar from '../components/Topbar.astro';
 import Tabbar from '../components/Tabbar.astro';
 import LeftSidebar from '../components/LeftSidebar.astro';
 import RightSidebar from '../components/RightSidebar.astro';
+import SearchModal from '../components/SearchModal.astro';
 
 interface Heading {
   depth: number;
@@ -46,7 +47,8 @@ const { title, headings, activeTab, activeSlug, breadcrumb = [] } = Astro.props;
     <div class="doc-layout">
       <LeftSidebar activeTab={activeTab} activeSlug={activeSlug} />
 
-      <main class="doc-content" id="content">
+      <div hidden data-pagefind-meta={`section:${activeTab}`}></div>
+      <main class="doc-content" id="content" data-pagefind-body>
         {breadcrumb.length > 0 && (
           <nav class="breadcrumb" aria-label="Breadcrumb">
             {breadcrumb.map((crumb, i) => (
@@ -67,6 +69,7 @@ const { title, headings, activeTab, activeSlug, breadcrumb = [] } = Astro.props;
       <RightSidebar headings={headings} />
     </div>
 
+    <SearchModal />
   </body>
 </html>
 

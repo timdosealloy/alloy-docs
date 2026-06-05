@@ -14,3 +14,24 @@
     <!-- <a href="#" class="login-btn">Log In</a> -->
   </div>
 </header>
+
+<script>
+  // Global ⌘K / Ctrl+K shortcut — wire once since document persists across navigations
+  if (!document.body.dataset.searchKeyWired) {
+    document.body.dataset.searchKeyWired = '1';
+    document.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        (window as any).__openSearch?.();
+      }
+    });
+  }
+
+  // Wire the topbar button — guard re-bind since topbar is transition:persist
+  document.addEventListener('astro:page-load', () => {
+    const btn = document.querySelector<HTMLElement>('.topbar-search');
+    if (!btn || btn.dataset.wired) return;
+    btn.dataset.wired = '1';
+    btn.addEventListener('click', () => (window as any).__openSearch?.());
+  });
+</script>

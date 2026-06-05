@@ -3,6 +3,7 @@ import '../styles/global.css';
 import { ViewTransitions } from 'astro:transitions';
 import Topbar from '../components/Topbar.astro';
 import Tabbar from '../components/Tabbar.astro';
+import SearchModal from '../components/SearchModal.astro';
 ---
 
 <!doctype html>
@@ -24,7 +25,7 @@ import Tabbar from '../components/Tabbar.astro';
     <Tabbar />
 
     <slot />
-
+    <SearchModal />
   </body>
 </html>
 
