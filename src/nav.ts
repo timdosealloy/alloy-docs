@@ -208,8 +208,8 @@ export function getFirstHref(tabId: string): string {
   const items = tab.items ?? tab.groups?.[0]?.items ?? [];
   const first = items[0];
   if (!first) return '#';
-  if (first.slug) return `/docs/${first.slug}`;
-  return `/docs/stub?t=${encodeURIComponent(first.label)}&tab=${tabId}`;
+  if (first.slug) return `/alloy-docs/docs/${first.slug}`;
+  return `/alloy-docs/docs/stub?t=${encodeURIComponent(first.label)}&tab=${tabId}`;
 }
 
 export function getTabForSlug(slug: string): string {

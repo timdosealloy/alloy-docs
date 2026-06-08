@@ -9,9 +9,9 @@ interface Props {
 const { activeTab, activeSlug } = Astro.props;
 
 function itemHref(item: { slug?: string; href?: string; label: string }, tabId: string): string {
-  if (item.slug) return `/docs/${item.slug}`;
+  if (item.slug) return `/alloy-docs/docs/${item.slug}`;
   if (item.href && item.href !== '#') return item.href;
-  return `/docs/stub?t=${encodeURIComponent(item.label)}&tab=${tabId}`;
+  return `/alloy-docs/docs/stub?t=${encodeURIComponent(item.label)}&tab=${tabId}`;
 }
 ---
 
