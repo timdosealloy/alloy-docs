@@ -8,8 +8,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/mdx": "^3.1.0",
     "astro": "^4.16.0",
-    "@astrojs/mdx": "^3.1.0"
+    "astro-relative-links": "^0.4.2"
   },
   "devDependencies": {
     "pagefind": "^1.0.0"
