@@ -1,17 +1,20 @@
 ---
 import HomeLayout from '../layouts/HomeLayout.astro';
 
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
+const docUrl = (path: string) => `${base}${path.replace(/^\//, '')}`;
+
 const products = [
   {
     title: 'Onboarding',
     desc: 'Learn about how to implement onboarding with Alloy.',
-    href: '/docs/guides/onboarding-with-entity-groups',
+    href: docUrl('/docs/guides/onboarding-with-entity-groups'),
     icon: 'fa-user-check',
   },
   {
     title: 'Ongoing Monitoring',
     desc: 'Explore the ways Alloy solves the different types of ongoing monitoring.',
-    href: '/docs/concepts/what-is-ongoing-monitoring',
+    href: docUrl('/docs/concepts/what-is-ongoing-monitoring'),
     icon: 'fa-chart-line',
   },
 ];
@@ -20,31 +23,31 @@ const features = [
   {
     title: 'Events API',
     desc: 'Learn about the capabilities of our Events API.',
-    href: '/docs/stub?t=Events+API&tab=build',
+    href: docUrl('/docs/stub?t=Events+API&tab=build'),
     icon: 'fa-bolt',
   },
   {
     title: 'SDK',
     desc: 'Explore the different features of our SDK.',
-    href: '/docs/stub?t=SDK&tab=build',
+    href: docUrl('/docs/stub?t=SDK&tab=build'),
     icon: 'fa-code',
   },
   {
     title: 'Entities',
     desc: 'Read about Entities, a fundamental piece of Alloy\'s system.',
-    href: '/docs/stub?t=Entities&tab=concepts',
+    href: docUrl('/docs/stub?t=Entities&tab=concepts'),
     icon: 'fa-fingerprint',
   },
   {
     title: 'Journeys',
     desc: 'Learn the ins and outs of Journeys — the primary method of decisioning within Alloy.',
-    href: '/docs/stub?t=Journeys&tab=concepts',
+    href: docUrl('/docs/stub?t=Journeys&tab=concepts'),
     icon: 'fa-map',
   },
   {
     title: 'Webhooks',
     desc: 'View information on Alloy\'s webhooks and when we send them.',
-    href: '/docs/stub?t=Webhooks&tab=concepts',
+    href: docUrl('/docs/stub?t=Webhooks&tab=concepts'),
     icon: 'fa-arrow-right-arrow-left',
   },
 ];

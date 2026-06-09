@@ -1,8 +1,9 @@
 ---
+const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
 ---
 <header class="topbar" transition:persist="topbar">
-  <a href={import.meta.env.BASE_URL} class="topbar-logo">
-    <img src="/logo.svg" style="height: 40px" alt="Alloy" />
+  <a href={base} class="topbar-logo">
+    <img src={`${base}logo.svg`} style="height: 40px" alt="Alloy" />
   </a>
   <div class="topbar-right">
     <button class="topbar-search" aria-label="Search">

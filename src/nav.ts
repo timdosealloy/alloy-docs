@@ -203,7 +203,7 @@ export const nav: NavTab[] = [
 ];
 
 export function getFirstHref(tabId: string): string {
-  const base = import.meta.env.BASE_URL;
+  const base = import.meta.env.BASE_URL.replace(/\/?$/, '/');
   const tab = nav.find((t) => t.id === tabId);
   if (!tab) return '#';
   const items = tab.items ?? tab.groups?.[0]?.items ?? [];
