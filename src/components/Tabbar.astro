@@ -10,15 +10,14 @@ const { activeTab = '' } = Astro.props;
 <nav class="tabbar" id="tabbar" aria-label="Documentation sections" transition:persist="tabbar">
   <span class="version-number">v1.0</span>
   {nav.map((tab) => (
-    <button
+    <a
       class={`tab${activeTab === tab.id ? ' active' : ''}`}
       data-tab={tab.id}
-      data-href={getFirstHref(tab.id)}
-      type="button"
+      href={getFirstHref(tab.id)}
     >
       {tab.icon && <i class={`fa-light ${tab.icon}`} aria-hidden="true"></i>}
       {tab.label}
-    </button>
+    </a>
   ))}
   <!-- <a href="#" class="tab-api-link">API Reference ↗</a> -->
 </nav>
