@@ -203,13 +203,14 @@ export const nav: NavTab[] = [
 ];
 
 export function getFirstHref(tabId: string): string {
+  const base = import.meta.env.BASE_URL;
   const tab = nav.find((t) => t.id === tabId);
   if (!tab) return '#';
   const items = tab.items ?? tab.groups?.[0]?.items ?? [];
   const first = items[0];
   if (!first) return '#';
-  if (first.slug) return `/alloy-docs/docs/${first.slug}`;
-  return `/alloy-docs/docs/stub?t=${encodeURIComponent(first.label)}&tab=${tabId}`;
+  if (first.slug) return `${base}docs/${first.slug}`;
+  return `${base}docs/stub?t=${encodeURIComponent(first.label)}&tab=${tabId}`;
 }
 
 export function getTabForSlug(slug: string): string {
