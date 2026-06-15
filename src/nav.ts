@@ -22,11 +22,26 @@ export const nav: NavTab[] = [
     id: 'get-started',
     label: 'Get Started',
     icon: 'fa-rocket',
-    items: [
-      { label: 'What is Alloy', href: '#' },
-      { label: 'Sandbox vs. Production', slug: 'get-started/sandbox-vs-production' },
-      { label: 'Authentication', slug: 'get-started/authentication-guide' },
-      { label: 'Quickstart: Your first Journey Application', href: '#' },
+    groups: [
+      {
+        label: 'Overview',
+        items: [
+          { label: 'What is Alloy?', href: '#' },
+          { label: 'Sandbox vs. Production', slug: 'get-started/sandbox-vs-production' },
+          { label: 'Authentication', slug: 'get-started/authentication-guide' },
+          { label: 'Quickstart: Your first Journey Application', href: '#' },
+        ],
+      },
+      {
+        label: 'Use Cases',
+        items: [
+          { label: 'Onboarding', href: '#' },
+          { label: 'Ongoing Monitoring', href: '#' },
+          { label: 'Perpetual KYC/KYB', href: '#' },
+          { label: 'Transaction Monitoring', href: '#' },
+          { label: 'Credit Underwriting', href: '#' },
+        ],
+      },
     ],
   },
   {
@@ -43,7 +58,7 @@ export const nav: NavTab[] = [
         ],
       },
       {
-        label: 'Journey Applications',
+        label: 'Journeys',
         items: [
           { label: 'What is a Journey Application', href: '#' },
           { label: 'Statuses & outcomes', href: '#' },
@@ -53,13 +68,17 @@ export const nav: NavTab[] = [
         ],
       },
       {
-        label: 'Ongoing Monitoring',
+        label: 'Workflows',
         items: [
-          { label: 'What is Ongoing Monitoring?', slug: 'concepts/what-is-ongoing-monitoring' },
-          { label: 'Terminology', href: '#' },
-          { label: 'Alloy Internal Services', href: '#' },
-          { label: 'Decisioning with Events', href: '#' },
-          { label: 'Event Status & Lifecycles', href: '#' },
+          { label: 'What are Published Attributes', href: '#' },
+          { label: 'Introduction to Custom Models', href: '#' },
+        ],
+      },
+      {
+        label: 'Rule-Based Notifications',
+        items: [
+          { label: 'What are Rule-Based Notifications', href: '#' },
+          { label: 'Backtesting', href: '#' },
         ],
       },
       {
@@ -67,13 +86,6 @@ export const nav: NavTab[] = [
         items: [
           { label: 'What are webhooks', href: '#' },
           { label: 'Retry behavior & delivery guarantees', href: '#' },
-        ],
-      },
-      {
-        label: 'Workflows',
-        items: [
-          { label: 'What are Published Attributes', href: '#' },
-          { label: 'Introduction to Custom Models', href: '#' },
         ],
       },
     ],
@@ -129,26 +141,36 @@ export const nav: NavTab[] = [
           { label: 'Authenticate with HMAC', href: '#' },
         ],
       },
+      {
+        label: 'Ongoing Monitoring setup',
+        items: [
+          { label: 'Configure an Event Action Node', href: '#' },
+          { label: 'Set up Rule-Based Notifications', href: '#' },
+        ],
+      },
     ],
   },
   {
     id: 'guides',
     label: 'End-to-End Guides',
     icon: 'fa-compass',
-    items: [
-      { label: 'Onboarding a new customer with Journeys', href: '#' },
-      { label: 'Onboarding with Step-Up Journey', href: '#' },
-      { label: 'Onboarding with Entity Groups (KYB)', slug: 'guides/onboarding-with-entity-groups' },
-      { label: 'Ongoing Monitoring with Entity Groups', href: '#' },
-    ],
     groups: [
       {
-        label: 'Use cases',
+        label: 'Onboarding',
         items: [
-          { label: 'Logins', href: '#' },
-          { label: 'Verifying PII Updates', href: '#' },
-          { label: 'Linking Funding Accounts', href: '#' },
-          { label: 'Journey Application use cases', href: '#' },
+          { label: 'Onboarding overview', href: '#' },
+          { label: 'Onboarding a new customer with Journeys', href: '#' },
+          { label: 'Onboarding with Step-Up Journey', href: '#' },
+          { label: 'Onboarding with Entity Groups (KYB)', slug: 'guides/onboarding-with-entity-groups' },
+        ],
+      },
+      {
+        label: 'Ongoing Monitoring',
+        items: [
+          { label: 'Ongoing Monitoring overview', slug: 'concepts/what-is-ongoing-monitoring' },
+          { label: 'Ongoing Monitoring with Entity Groups', href: '#' },
+          { label: 'Ongoing monitoring for logins', href: '#' },
+          { label: 'Ongoing monitoring for transactions', href: '#' },
         ],
       },
     ],
@@ -185,19 +207,6 @@ export const nav: NavTab[] = [
           { label: 'Webhook delivery & retry behavior', href: '#' },
         ],
       },
-    ],
-  },
-  {
-    id: 'troubleshoot',
-    label: 'Troubleshoot',
-    icon: 'fa-bug',
-    items: [
-      { label: 'Common errors: Journey Applications', href: '#' },
-      { label: 'Error codes', href: '#' },
-      { label: 'Data validation errors', href: '#' },
-      { label: 'Webhook delivery issues', href: '#' },
-      { label: 'Platform Health', href: '#' },
-      { label: 'Contact support', href: '#' },
     ],
   },
 ];
